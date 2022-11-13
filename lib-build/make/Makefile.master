@@ -1,0 +1,50 @@
+# Include this makefile per project
+#
+# Optional parameters;
+# MASTER_LIBS = Simple library name list.
+# MASTER_INC_DIRS = hook to include extra header files.
+# MASTER_LIB_DIRS = hook to include extra libraries.
+# MASTER_FLAGS    = hook for extra build flags
+#
+
+ifndef SKT_PDE_SRC
+    $(error $$(SKT_PDE_SRC) not defined)
+endif
+
+THIS_PATH = ../lib-build/make/
+INC_LOCAL = .
+
+# Optional include an local override
+-include $(THIS_PATH)/Makefile.inc.local
+
+# Copy debug ips
+ifdef DEBUG_NET_HISIP
+	DEBUG_NET_FLAG_HISIP = -DDEBUG_NET_HISIP=$(DEBUG_NET_HISIP)
+endif
+ifdef DEBUG_NET_GATE
+	DEBUG_NET_FLAG_GATE = -DDEBUG_NET_GATE=$(DEBUG_NET_GATE)
+endif
+
+# Add some normal defaults for root makefile
+ARD_REV ?= 105
+ARD_BIN ?= $(ARD_HOME)/hardware/tools/avr/bin
+AVRDUDE ?= $(ARD_HOME)/hardware/tools/avr/bin/avrdude
+AVRDUDE_CONF ?= $(ARD_HOME)/hardware/tools/avr/etc/avrdude.conf
+BOARD ?= uno
+PORT ?= /dev/ttyACM0
+PROGRAMMER ?= arduino
+MON_SPEED ?= 115200
+MON_CMD ?= picocom
+ROOT_INCS = $(ARD_HOME)/hardware/arduino/avr/variants/standard/
+
+# Include managed build parameters
+include $(THIS_PATH)/Makefile.inc.debug
+include $(THIS_PATH)/Makefile.inc.libs
+
+# Create build dirs for root makefile
+INC_DIRS = $(MASTER_INC_DIRS) $(ROOT_INCS) $(INC_LOCAL)
+LIB_DIRS = $(MASTER_LIB_DIRS) $(ROOT_LIBS)
+SKETCH_FLAGS = $(MASTER_FLAGS) $(DEBUG_NET_FLAG_HISIP) $(DEBUG_NET_FLAG_GATE) $(DEBUG_FLAGS)
+
+# Include the root parent makefile
+include $(THIS_PATH)/Makefile.inc.root

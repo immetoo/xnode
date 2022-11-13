@@ -1,0 +1,50 @@
+
+<p>There are {{data.length}} <%= tview.tplural %></p>
+
+<% if (tview.tcreate) { %>
+	<p>
+		<a href="<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tcreate.texport.angular.tslug %>">Create New</a>
+	</p>
+<% } %>
+<div class="table-responsive">
+	<table class="table table-bordered table-hover table-striped">
+		<thead>
+			<tr>
+				<% if (tview.tread) { %><th>Open</th><% } %>
+				<% if (tview.tedit) { %><th>Edit</th><% } %>
+				<% if (tview.tdelete) { %><th>Delete</th><% } %>
+				<% tview.tlist.tfields.forEach(function (fieldKey) { %>
+					<th><%= tview.tmeta.tfields[fieldKey].tname %></th>
+				<% }) %>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="row in data">
+				<% if (tview.tread) { %>
+					<td>
+						<a href="<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tread.texport.angular.tslug %>/{{row._id}}">Read</a>
+					</td>
+				<% } %>
+				<% if (tview.tedit) { %>
+					<td>
+						<a href="<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tedit.texport.angular.tslug %>/{{row._id}}">Edit</a>
+					</td>
+				<% } %>
+				<% if (tview.tdelete) { %>
+					<td>
+						<a href="<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tdelete.texport.angular.tslug %>/{{row._id}}">Delete</a>
+					</td>
+				<% } %>
+				<% tview.tlist.tfields.forEach(function (fieldKey) { %>
+					<td>{{row.<%= tview.tmeta.tfields[fieldKey].tid %>}}</td>
+				<% }) %>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<% if (tview.tcreate) { %>
+	<p>
+		<a href="<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tcreate.texport.angular.tslug %>">Create New</a>
+	</p>
+<% } %>
+

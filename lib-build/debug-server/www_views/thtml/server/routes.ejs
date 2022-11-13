@@ -1,0 +1,28 @@
+<div>
+	<h2>Server Routes</h2>
+	<p>This page show all the nodejs express routes.</p>
+	<div class="row">
+		<% if (query.group1 && query.group2) { %>
+			<div class="col-lg-6">
+				<% query.group1.split(',').forEach(function (routeGroup) { %>
+					<%- include('routes-group', {routeGroup: routeGroup}); %>
+				<% }) %>
+			</div>
+			<div class="col-lg-6">
+				<% query.group2.split(',').forEach(function (routeGroup) { %>
+					<%- include('routes-group', {routeGroup: routeGroup}); %>
+				<% }) %>
+			</div>
+		<% } else if (query.group1) { %>
+			<div class="col-lg-12">
+				<% query.group1.split(',').forEach(function (routeGroup) { %>
+					<%- include('routes-group', {routeGroup: routeGroup}); %>
+				<% }) %>
+			</div>
+		<% } else { %>
+			<div class="col-lg-12">
+				<%- include('routes-group', {routeGroup: 'all'}); %>
+			</div>
+		<% } %>
+	</div>
+</div>

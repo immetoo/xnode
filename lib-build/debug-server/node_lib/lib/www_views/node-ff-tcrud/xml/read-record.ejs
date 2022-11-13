@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<<%= tview.tid %>>
+		<% Object.keys(tview.tlist.tfields).forEach(function (tfieldKey) {var tfield = tview.tlist.tfields[tfieldKey]; %>
+			<<%= tfieldKey %> type="<%= tfield.type %>"><%= record[tfield.tid] %></<%= tfieldKey %>>
+		<% }) %>
+	</<%= tview.tid %>>
+</data>

@@ -1,0 +1,59 @@
+
+Protocol description Xnode-base to server version A.
+
+== Abstract
+
+http-host:       beta.server.local
+http-method:     POST
+http-uri:        _a
+http-param-get:  none
+http-param-post: pt|rc|ni|nd|nn
+
+== Post body description
+
+pt = Post Type
+rc = Request Counter
+ni = Network Id
+nd = Node Data
+nn = Node Number (id)
+
+== Post Type parameter description
+
+Post Type options:
+p = Sending ping
+i = Sending Init request 
+d = Sending Data
+
+== Post server reply 
+
+- Single line
+- Max 40 char (or 42 chars with XX prefix counted)
+- Must ALWAYS start with X(ensit) for valid reply.
+- Second char is command type in uppercase:
+  i = Execute next init cmd.
+  X = Execute next normal cmd.
+
+== Example: Init cycle
+
+10.11.12.205 Mon, 17 Feb 2014 20:10:37 +0000 URI{http://beta.server.local/_a} G{} P{pt=p&rc=55&ni=000000000000} R{X} 
+10.11.12.205 Mon, 17 Feb 2014 20:10:37 +0000 URI{http://beta.server.local/_a} G{} P{pt=p&rc=56&ni=000000000000} R{X} 
+10.11.12.205 Mon, 17 Feb 2014 20:10:39 +0000 URI{http://beta.server.local/_a} G{} P{pt=i&rc=59&ni=000000000000} R{Xinet_id 1234694D33B2}
+10.11.12.205 Mon, 17 Feb 2014 20:10:38 +0000 URI{http://beta.server.local/_a} G{} P{pt=i&rc=57&ni=000000000000} R{Xinet_key 9A2EE3A293486E9FE73D77EFC8087D2F} 
+10.11.12.205 Mon, 17 Feb 2014 20:10:39 +0000 URI{http://beta.server.local/_a} G{} P{pt=i&rc=58&ni=1234694D33B2} R{Xirf_key 9A2EE3A293486E9FE73D77EFC8087D2F} 
+10.11.12.205 Mon, 17 Feb 2014 20:10:39 +0000 URI{http://beta.server.local/_a} G{} P{pt=i&rc=59&ni=1234694D33B2} R{Xinet_mac 7469694D33B2}
+10.11.12.205 Mon, 17 Feb 2014 20:10:40 +0000 URI{http://beta.server.local/_a} G{} P{pt=i&rc=60&ni=1234694D33B2} R{Xireboot} 
+10.11.12.205 Mon, 17 Feb 2014 20:11:39 +0000 URI{http://beta.server.local/_a} G{} P{pt=p&rc=55&ni=1234694D33B2} R{X} 
+10.11.12.205 Mon, 17 Feb 2014 20:11:39 +0000 URI{http://beta.server.local/_a} G{} P{pt=p&rc=56&ni=1234694D33B2} R{X} 
+10.11.12.205 Mon, 17 Feb 2014 20:16:42 +0000 URI{http://beta.server.local/_a} G{} P{pt=d&rc=57&ni=1234694D33B2&nn=1&nd={rf_fail=1}} R{X} 
+10.11.12.205 Mon, 17 Feb 2014 20:20:41 +0000 URI{http://beta.server.local/_a} G{} P{pt=d&rc=58&ni=1234694D33B2&nn=1&nd={rf_fail=1}} R{X} 
+10.11.12.205 Mon, 17 Feb 2014 20:24:41 +0000 URI{http://beta.server.local/_a} G{} P{pt=d&rc=59&ni=1234694D33B2&nn=1&nd={rf_fail=1}} R{X} 
+10.11.12.205 Mon, 17 Feb 2014 20:28:41 +0000 URI{http://beta.server.local/_a} G{} P{pt=d&rc=60&ni=1234694D33B2&nn=1&nd={rf_fail=1}} R{X} 
+10.11.12.205 Mon, 17 Feb 2014 20:32:40 +0000 URI{http://beta.server.local/_a} G{} P{pt=d&rc=61&ni=1234694D33B2&nn=1&nd={rf_fail=1}} R{X} 
+
+== Example: Sensor data
+
+10.11.12.205 Tue, 18 Feb 2014 00:12:25 +0000 URI{http://beta.server.local/_a} G{} P{pt=d&rc=43&ni=1234694D33B2&nn=2&nd={sd_dht_hum=34.000\nsd_dht_temp=23.000}} R{X} 
+10.11.12.205 Tue, 18 Feb 2014 00:12:30 +0000 URI{http://beta.server.local/_a} G{} P{pt=d&rc=44&ni=1234694D33B2&nn=2&nd={sd_dht_hum=33.000\nsd_dht_temp=24.000}} R{X} 
+10.11.12.205 Tue, 18 Feb 2014 00:12:35 +0000 URI{http://beta.server.local/_a} G{} P{pt=d&rc=45&ni=1234694D33B2&nn=2&nd={sd_dht_hum=33.000\nsd_dht_temp=24.000}} R{X} 
+10.11.12.205 Tue, 18 Feb 2014 00:12:40 +0000 URI{http://beta.server.local/_a} G{} P{pt=d&rc=46&ni=1234694D33B2&nn=2&nd={sd_dht_hum=34.000\nsd_dht_temp=24.000}} R{X} 
+10.11.12.205 Tue, 18 Feb 2014 00:12:45 +0000 URI{http://beta.server.local/_a} G{} P{pt=d&rc=47&ni=1234694D33B2&nn=2&nd={sd_dht_hum=33.000\nsd_dht_temp=25.000}} R{X} 

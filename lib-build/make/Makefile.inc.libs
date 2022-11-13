@@ -1,0 +1,36 @@
+#
+# Managed libraries versions
+#
+
+# Replace libraries with versioned libraries paths.
+ifneq (,$(findstring spi,$(MASTER_LIBS)))
+	II_SPI = $(ARD_HOME)/hardware/arduino/avr/libraries/SPI
+endif
+ifneq (,$(findstring rfm,$(MASTER_LIBS)))
+	II_RFM = ../lib-ext/rfm-69.git
+endif
+ifneq (,$(findstring dht,$(MASTER_LIBS)))
+	II_DHT = ../lib-ext/dht.git
+endif
+ifneq (,$(findstring ethercard,$(MASTER_LIBS)))
+	II_ETHERCARD = ../lib-ext/ethercard.git
+endif
+ifneq (,$(findstring isp-repair,$(MASTER_LIBS)))
+	II_ISP_REPAIR = ../lib/isp-repair
+endif
+ifneq (,$(findstring xnode-shared,$(MASTER_LIBS)))
+	II_XNODE_SHARED = ../lib/xnode-shared
+endif
+ifneq (,$(findstring xnode-shared-satellite,$(MASTER_LIBS)))
+	II_XNODE_SHARED_SATELLITE = ../lib/xnode-shared-satellite
+endif
+
+# Argragate Internal Includes to ROOT_LIBS
+ROOT_LIBS = \
+	$(II_SPI) \
+	$(II_RFM) \
+	$(II_DHT) \
+	$(II_ETHERCARD) \
+	$(II_ISP_REPAIR) \
+	$(II_XNODE_SHARED) \
+	$(II_XNODE_SHARED_SATELLITE)

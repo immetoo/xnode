@@ -1,0 +1,20 @@
+# Local env included makefile 
+# This file should be ignored in version control
+# note: the ?= is so you can override those again in cmdline.
+#
+# Change to local arduino installation.
+ARD_HOME ?= /home/willemc/devv/avr/ide/arduino-1.6.0
+
+# Default port to isp
+# PORT ?= /dev/ttyACM0
+
+# Uncomment to have serial debug printing
+# Supported arguments are: NONE,ALL,NETWORK,RADIO,SYSTEM,SERIAL,SENSOR
+# DEBUG_LOGGING ?= ALL
+
+# Uncomment to disable lookup and this this address.
+# DEBUG_NET_HISIP ?= {10,11,12,177}
+
+# Only needed in some extreme cases where there is
+# transparant http proxy filtering in the network...
+# DEBUG_NET_GATE ?= {10,11,12,177}

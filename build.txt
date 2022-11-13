@@ -1,0 +1,38 @@
+
+Minimal build setup:
+
+1) Download+unzip arduino ide version 1.6.0 is tested !
+   Get it from http://www.arduino.cc/
+
+2) Install make and tcl;
+   apt-get install tcl make
+   
+3) Build all project in one go;
+   make ARD_HOME=/path/to/arduino-ide-1.6.0
+
+Optional:
+
+To override multiple flags and parameters for every
+build there is a local makefile include template.
+
+1) cp lib-build/make/Makefile.inc.local-template lib-build/make/Makefile.inc.local
+2) Edit lib-build/make/Makefile.inc.local
+3) make or cd xnode-base;make/etc
+
+Now the make command of the sub projects and this parent build
+will use the local make settings.
+
+Build commands;
+
+	Build all hex files;
+	cd project-root/
+	make
+	
+	Build clean satellite only
+	cd project-root/xnode-satellite
+	make clean all
+	
+	Build and upload clean base only
+	cd project-root/xnode-base
+	make clean upload
+	make clean upload ISP_PORT=/dev/ttyACM1

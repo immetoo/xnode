@@ -1,0 +1,8 @@
+
+	$scope.<%= taction %>None = function () {
+	<% if (tview.tlist) { %>
+		$location.url('<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tlist.texport.angular.tslug %>');
+	<% } else { %>
+		$location.url('<%= tview.tmeta.texport.angular.tbase %>/');
+	<% } %>
+	}

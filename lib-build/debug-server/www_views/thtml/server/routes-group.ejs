@@ -1,0 +1,17 @@
+<div class="table-responsive">
+	<h3><%= routeGroup.toUpperCase() %></h3>
+	<table class="table table-bordered table-hover table-striped">
+		<thead>
+			<tr>
+				<th>Path</th>
+				<th>Method</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="route in serverRoutes['<%= routeGroup %>']">
+				<td>{{route.uriPath}}</td>
+				<td>{{route.httpMethod}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

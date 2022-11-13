@@ -1,0 +1,44 @@
+{
+  "name": "xnode-debug-server",
+  "description": "XNode Debug Server",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "size": "npm run-script size-json;npm run-script size-html;npm run-script size-code",
+    "size-code": "find . -type f -name '*.js' |egrep -v '/node_modules|/lib' | xargs wc -l",
+    "size-json": "find . -type f -name '*.json' |egrep -v '/node_modules|/lib' | xargs wc -l",
+    "size-html": "find . -type f -name '*.ejs' |egrep -v '/node_modules|/lib' | xargs wc -l"
+  },
+  "dependencies": {
+    "async": "~0.9.0",
+    "body-parser": "~1.0.1",
+    "bootstrap": "3.3.2",
+    "clone": "^1.0.0",
+    "connect-mongo": "^0.7.0",
+    "cookie-parser": "^1.0.1",
+    "crud-mongoose": "^1.0.10",
+    "ejs": "^2.3.1",
+    "errorhandler": "^1.1.1",
+    "express": "^4.11.0",
+    "express-session": "^1.10.3",
+    "fetch": "^0.3.6",
+    "flot": "0.8.0-alpha",
+    "fs-extra": "^0.16.3",
+    "mongoose": "~3.8.13",
+    "morgan": "~1.1.1",
+    "node-crud": "2.0.8",
+    "node-ff-assets": "^0.2.4",
+    "raw-body": "1.2.2",
+    "static-favicon": "~1.0.0",
+    "tree-surgeon": "0.0.13",
+    "type-is": "1.1.0",
+    "underscore": "^1.8.2",
+    "validate.io": "^1.5.0",
+    "winston": "~0.7.3",
+    "xml-mapping": "~1.6.1"
+  },
+  "devDependencies": {
+    "mocha-jshint": "0.0.9"
+  }
+}

@@ -1,0 +1,96 @@
+extends layout
+
+block content
+    h1= title
+    div
+      h2 Last five node data.
+      table
+        thead
+          tr
+            th Net id
+            th Node Id
+            th Value
+        tbody
+          each row in lastData
+            tr
+              td #{row.net_id}
+              td #{row.node_id}
+              td
+                p #{row.insert_date}
+                p #{row.data_text}
+              
+    div(id='split')
+      div(id='splitLeft')
+        div
+          h2 Last five node values.
+          table
+            thead
+              tr
+                th Net id
+                th Name
+                th Value
+                th insert_date
+            tbody
+              each row in lastValues
+                tr
+                  td #{row.net_id}
+                  td #{row.name}
+                  td #{row.value}
+                  td #{row.insert_date}
+        div
+          h2 Last five changed settings
+          table
+            thead
+              tr
+                th Name
+                th Value
+            tbody
+              each row in lastSettings
+                tr
+                  td #{row.name}
+                  td #{row.value}
+              
+      div(id='splitRight')
+        div
+          h2 Last five pings
+          table
+            thead
+              tr
+                th Net id
+                th Ping Count
+                th Ping Last
+            tbody
+              each xnode in lastPinged
+                tr
+                  td #{xnode.hw_net_id}
+                  td #{xnode.ping_counter}
+                  td #{xnode.ping_last_date}
+        div
+          h2 Last five open Cmds
+          table
+            thead
+              tr
+                th Net id
+                th Command
+                th Insert date
+            tbody
+              each xnode in openCommands
+                tr
+                  td #{xnode.net_id}
+                  td #{xnode.command}
+                  td #{xnode.insert_date}
+        div
+          h2 Last five send Cmds
+          table
+            thead
+              tr
+                th Net id
+                th Command
+                th Send date
+            tbody
+              each xnode in sendCommands
+                tr
+                  td #{xnode.net_id}
+                  td #{xnode.command}
+                  td #{xnode.send_date}
+              

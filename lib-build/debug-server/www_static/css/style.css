@@ -1,0 +1,54 @@
+
+#wrapper {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.side-nav {
+	right: 0px;
+	left: 0px;
+}
+
+.btn {
+	margin-right: 10px;
+}
+
+.navbar-footer {
+	margin-left: 45%;
+}
+
+.navbar-toggle {
+	display: none;
+}
+
+.navbar-brand {
+	background-color: #2CABE1;
+}
+
+.navbar-inverse .navbar-brand {
+	color: #FFFFFF;
+}
+
+.navbar-inverse .navbar-brand:focus {
+	outline: none;
+}
+
+.navbar-inverse .navbar-brand:hover {
+	background-color: #FF9A28;
+	outline: none;
+}
+
+.navbar-inverse { 	
+	background-color: #2CABE1;
+}
+
+#menuLogo {
+	position: absolute;
+	top: 47px;
+	right: 0px;
+	background: url("../img/logo.png") 50% 0px no-repeat transparent !important;
+	height: 77px;
+	width: 212px;
+}
+
+

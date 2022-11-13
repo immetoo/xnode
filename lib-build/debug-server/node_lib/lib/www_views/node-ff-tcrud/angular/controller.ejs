@@ -1,0 +1,99 @@
+'use strict';
+
+// Auto generated controller mapping for: <%= tview.tid %>
+
+
+crudRouteInit.push(<%= tview.tcode %>Init);
+
+function <%= tview.tcode %>Init($routeProvider, $locationProvider) {
+<% if (tview.tlist) { %>
+	$routeProvider.when('<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/', {
+		redirectTo: '<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tlist.texport.angular.tslug %>'
+	});
+	<%- include('controller-route', {tview: tview,thtmlPrefix:thtmlPrefix,taction: 'tlist', routeEnd: ''}); %>
+<% } %>
+<% if (tview.tcreate) { %>
+	<%- include('controller-route', {tview: tview,thtmlPrefix:thtmlPrefix,taction: 'tcreate', routeEnd: ''}); %>
+<% } %>
+<% if (tview.tedit) { %>
+	<%- include('controller-route', {tview: tview,thtmlPrefix:thtmlPrefix,taction: 'tedit', routeEnd: '/:id'}); %>
+<% } %>
+<% if (tview.tread) { %>
+	<%- include('controller-route', {tview: tview,thtmlPrefix:thtmlPrefix,taction: 'tread', routeEnd: '/:id'}); %>
+<% } %>
+<% if (tview.tdelete) { %>
+	<%- include('controller-route', {tview: tview,thtmlPrefix:thtmlPrefix,taction: 'tdelete', routeEnd: '/:id'}); %>
+<% } %>
+}
+
+<% if (tview.tlist) { %>
+function <%= tview.tlist.texport.angular.tcontroller.prefix %><%= tview.tcode %><%= tview.tlist.texport.angular.tcontroller.postfix %>(<%= tview.tlist.texport.angular.tcontroller.argu %>) {
+	$http.get('<%= tapiPrefix %>/<%= tview.tlist.texport.json.tslug %>').success(function(data, status, headers, config) {
+		$scope.data = data.data;
+	});
+}
+<% } %>
+
+<% if (tview.tcreate) { %>
+function <%= tview.tcreate.texport.angular.tcontroller.prefix %><%= tview.tcode %><%= tview.tcreate.texport.angular.tcontroller.postfix %>(<%= tview.tcreate.texport.angular.tcontroller.argu %>) {
+	$scope.data = {};
+	$scope.tcreateData = function () {
+		$http.post('<%= tapiPrefix %>/<%= tview.tcreate.texport.json.tslug %>', $scope.data).success(function(data) {
+		<% if (tview.tlist) { %>
+			$location.url('<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tlist.texport.angular.tslug %>');
+		<% } else { %>
+			$location.url('<%= tview.tmeta.texport.angular.tbase %>/');
+		<% } %>
+		});
+	}
+	<%- include('controller-action-none', {tview: tview,taction: 'tcreate'}); %>
+}
+<% } %>
+
+<% if (tview.tread) { %>
+function <%= tview.tread.texport.angular.tcontroller.prefix %><%= tview.tcode %><%= tview.tread.texport.angular.tcontroller.postfix %>(<%= tview.tread.texport.angular.tcontroller.argu %>) {
+	$scope.data = {};
+	$http.get('<%= tapiPrefix %>/<%= tview.tread.texport.json.tslug %>/' + $routeParams.id).success(function(data) {
+		$scope.data = data.data;
+	});
+	<%- include('controller-action-none', {tview: tview,taction: 'tread'}); %>
+}
+<% } %>
+
+<% if (tview.tedit) { %>
+function <%= tview.tedit.texport.angular.tcontroller.prefix %><%= tview.tcode %><%= tview.tedit.texport.angular.tcontroller.postfix %>(<%= tview.tedit.texport.angular.tcontroller.argu %>) {
+	$scope.data = {};
+	$http.get('<%= tapiPrefix %>/<%= tview.tread.texport.json.tslug %>/' + $routeParams.id).success(function(data) {
+		$scope.data = data.data;
+	});
+	$scope.teditData = function () {
+		$http.put('<%= tapiPrefix %>/<%= tview.tedit.texport.json.tslug %>/' + $routeParams.id, $scope.data ).success(function(data) {
+		<% if (tview.tread) { %>
+			$location.url('<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tread.texport.angular.tslug %>/' + $routeParams.id);
+		<% } else { %>
+			$location.url('<%= tview.tmeta.texport.angular.tbase %>/');
+		<% } %>
+		});
+	}
+	<%- include('controller-action-none', {tview: tview,taction: 'tedit'}); %>
+}
+<% } %>
+
+<% if (tview.tdelete) { %>
+function <%= tview.tdelete.texport.angular.tcontroller.prefix %><%= tview.tcode %><%= tview.tdelete.texport.angular.tcontroller.postfix %>(<%= tview.tdelete.texport.angular.tcontroller.argu %>) {
+	$scope.data = {};
+	$http.get('<%= tapiPrefix %>/<%= tview.tread.texport.json.tslug %>/' + $routeParams.id).success(function(data) {
+		$scope.data = data.data;
+	});
+	$scope.tdeleteData = function () {
+		$http.delete('<%= tapiPrefix %>/<%= tview.tdelete.texport.json.tslug %>/'+ $routeParams.id, $scope.data).success(function(data) {
+		<% if (tview.tlist) { %>
+			$location.url('<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tlist.texport.angular.tslug %>');
+		<% } else { %>
+			$location.url('<%= tview.tmeta.texport.angular.tbase %>/');
+		<% } %>
+		});
+	}
+	<%- include('controller-action-none', {tview: tview,taction: 'tdelete'}); %>
+}
+<% } %>

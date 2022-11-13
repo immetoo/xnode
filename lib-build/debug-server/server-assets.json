@@ -1,0 +1,27 @@
+{
+	"linkMapping" : {
+		"/static/module/bootstrap/": "node_modules/bootstrap/dist/",
+		"/static/module/flot/":      "node_modules/flot/",
+		"/static/":                  "www_static/"
+	},
+	"css": {
+		"linkTarget":                "/static/css/lib/assets.css",
+		"linkSources": [
+			"/static/module/bootstrap/css/bootstrap.css"
+		]
+	},
+	"js": {
+		"linkTarget":                "/static/js/lib/assets.js",
+		"linkSources": [
+			"/static/js/lib/jquery-2.1.3/jquery.js@http://code.jquery.com/jquery-2.1.3.js",
+			"/static/module/bootstrap/js/bootstrap.js",
+			"/static/module/flot/jquery.flot.js",
+			"/static/module/flot/jquery.flot.resize.js",
+			"/static/module/flot/jquery.flot.pie.js",
+			"/static/js/lib/angularjs-1.4.0-b4/angular.js@https://code.angularjs.org/1.4.0-beta.4/angular.js",
+			"/static/js/lib/angularjs-1.4.0-b4/angular-route.js@https://code.angularjs.org/1.4.0-beta.4/angular-route.js",
+			"/static/js/lib/angularjs-1.4.0-b4/angular-resource.js@https://code.angularjs.org/1.4.0-beta.4/angular-resource.js",
+			"/static/js/lib/angularjs-1.4.0-b4/angular-touch.js@https://code.angularjs.org/1.4.0-beta.4/angular-touch.js"
+		]
+	}
+}

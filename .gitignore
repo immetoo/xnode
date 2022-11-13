@@ -1,0 +1,51 @@
+#
+# Xnode Ignore list
+#
+
+# Ignore all build folders
+build
+
+# Ignore all generated source
+*.generated
+
+# Ignore local include makefile
+lib-build/make/Makefile.inc.local
+
+# Ignore nodejs deps + www logs
+lib-build/debug-server/www_logs
+lib-build/debug-server/node_modules
+lib-build/debug-server/npm-debug.log
+lib-build/debug-server/www_static/js/lib
+lib-build/debug-server/www_static/css/lib
+
+# Ignore binary files
+*.o
+*.class
+*.old
+*.bak
+*.backup
+*.dat
+*.data
+*.gif
+*.pdf
+*.doc
+
+# Ignore ~ backup files.
+*~
+
+# Ignore some eclipse files
+.settings
+.classpath
+
+# Ignore netbeans directory
+nbproject
+
+# Ignore mac finder files
+.DS_Store
+
+# Ignore windows files.
+Thumbs.db
+Desktop.ini
+
+# Ignore kde dolphin files
+.directory

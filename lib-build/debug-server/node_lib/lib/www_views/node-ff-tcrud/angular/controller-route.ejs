@@ -1,0 +1,5 @@
+
+	$routeProvider.when('<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview[taction].texport.angular.tslug %><%= routeEnd %>', {
+		templateUrl: '<%= thtmlPrefix %>/<%= tview[taction].texport.angular.thtml %>',
+		controller: <%= tview[taction].texport.angular.tcontroller.prefix %><%= tview.tcode %><%= tview[taction].texport.angular.tcontroller.postfix %>
+	});

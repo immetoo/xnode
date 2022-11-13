@@ -1,0 +1,45 @@
+# Master makefile to flash tool projects
+#
+# Parameter;
+# MASTER_FLASH_PROG = The hex file to flash
+#
+# Option Parameter;
+# MASTER_FLASH_BOOT = The bootloader to flash
+# MASTER_FLASH_PAIR_EXTRA = extra pair list of hex files to flash,
+#   note where the keyword optiboot get replaced by the optiboot hex file.
+#
+
+ifndef MASTER_FLASH_PROG
+    $(error $$(MASTER_FLASH_PROG) not defined)
+endif
+
+# Define libary includes
+MASTER_LIBS = isp-repair
+
+# Include our master
+include ../lib-build/make/Makefile.master
+
+HEX_FILE_BOOT_OPTI  = $(ARD_HOME)/hardware/arduino/avr/bootloaders/optiboot/optiboot_atmega328.hex
+HEX_FILE_BLINK_TEST = ../xnode-test-blink/build/xnode-test-blink.hex
+
+# Define local variables
+HEX2C = tclsh ../lib-build/tools/mega-hex2c.tcl
+HEX_DATA = xnode-flashdata.generated
+HEX_PAIR_BLINK = $(HEX_FILE_BOOT_OPTI) $(HEX_FILE_BLINK_TEST) 
+MASTER_FLASH_BOOT ?= $(HEX_FILE_BOOT_OPTI)
+HEX_PAIR_MASTER = $(MASTER_FLASH_BOOT) $(MASTER_FLASH_PROG)
+HEX_PAIR_EXTRA = $(subst optiboot,$(HEX_FILE_BOOT_OPTI),$(MASTER_FLASH_PAIR_EXTRA))
+HEX_PAIR_LIST = $(HEX_PAIR_BLINK) $(HEX_PAIR_MASTER) $(HEX_PAIR_EXTRA)
+
+# Hook in our local extra build targets
+clean : clean-hex
+$(BUILD_DIR) : $(HEX_DATA)
+
+# Generate flashdata before compiling
+$(HEX_DATA) :
+	$(HEX2C) $(HEX_PAIR_LIST) > $(HEX_DATA)
+
+clean-hex :
+	$(RM) $(HEX_DATA)
+
+

@@ -1,0 +1,19 @@
+<section>
+	<h2> {{data._id}} </h2>
+	<% if (tview.tedit) { %>
+		<p>
+			<a href="<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tedit.texport.angular.tslug %>/{{data._id}}">Edit</a>
+		</p>
+	<% } %>
+	<% if (tview.tdelete) { %>
+		<p>
+			<a href="<%= tview.tmeta.texport.angular.tbase %>/<%= tview.tslug %>/<%= tview.tdelete.texport.angular.tslug %>/{{data._id}}">Delete</a>
+		</p>
+	<% } %>
+	<% tview.tread.tfields.forEach(function (fieldKey) { %>
+		<p><%= tview.tmeta.tfields[fieldKey].tname %>: {{data.<%= tview.tmeta.tfields[fieldKey].tid %>}}</p>
+	<% }) %>
+	<p>
+		<button ng-click="treadNone()">Back</button>
+	</p>
+<sector>

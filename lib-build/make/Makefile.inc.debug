@@ -1,0 +1,40 @@
+#
+# Managed debug logging 
+#
+# Supported arguments are: NONE,ALL,NETWORK,RADIO,SYSTEM,SERIAL,SENSOR
+
+# Replace keywords with debug flags.
+ifneq (,$(findstring NETWORK,$(DEBUG_LOGGING)))
+	DEBUG_NETWORK ?= -DDEBUG_NETWORK
+endif
+ifneq (,$(findstring RADIO,$(DEBUG_LOGGING)))
+	DEBUG_RADIO ?= -DDEBUG_RADIO
+endif
+ifneq (,$(findstring SYSTEM,$(DEBUG_LOGGING)))
+	DEBUG_SYSTEM ?= -DDEBUG_SYSTEM
+endif
+ifneq (,$(findstring SERIAL,$(DEBUG_LOGGING)))
+	DEBUG_SERIAL ?= -DDEBUG_SERIAL
+endif
+ifneq (,$(findstring SENSOR,$(DEBUG_LOGGING)))
+	DEBUG_SENSOR ?= -DDEBUG_SENSOR
+endif
+ifneq (,$(findstring ALL,$(DEBUG_LOGGING)))
+	DEBUG_NETWORK ?= -DDEBUG_NETWORK
+	DEBUG_RADIO ?= -DDEBUG_RADIO
+	DEBUG_SYSTEM ?= -DDEBUG_SYSTEM
+	DEBUG_SERIAL ?= -DDEBUG_SERIAL
+	DEBUG_SENSOR ?= -DDEBUG_SENSOR
+endif
+
+# Let NONE keyword override to disable.
+ifeq (,$(findstring NONE,$(DEBUG_LOGGING)))
+	# Argragate debug flags to build.
+	DEBUG_FLAGS ?= \
+		$(DEBUG_NETWORK) \
+		$(DEBUG_RADIO) \
+		$(DEBUG_SYSTEM) \
+		$(DEBUG_SERIAL) \
+		$(DEBUG_SENSOR)
+endif
+

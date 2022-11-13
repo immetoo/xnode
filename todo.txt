@@ -1,0 +1,64 @@
+
+ERR:
+ - delayed linkup and dhcp, will garble second packet so has wrong net_id. (1st is ok,2=err,3++ is ok,*++ some err)
+
+PCB:
+ - ftdi mask DTR is RST
+ - ftdi mask PWR is 5v
+ - int or-gate diodes
+ - add jt batt pulse charger ?
+
+CODE:
+ - auto mac address
+ - sat sleep
+ - sat sensors
+ - sat sensors more
+ - sat boot flash code
+ - base sat flash code
+ - base rssi data send (rf signal strength)
+ 
+ 
+ - sat radio, auto lower power level icm rssi reply server
+ 
+ - xnode uuid
+ -   base is indepent of xnode
+ 
+ - rf_key = comm
+ - rf_key_reboot = hardcoded default for reboot secure init
+ - rf_key_init = requirement: walking of node into base without user action
+
+
+ - base in promise
+   - after knock goto rf_key_init for 1min
+ 
+ 
+ - rm net_id nodeDAta
+ 
+ - sat failed base after user-ack failed.
+    - per 5min
+       - prev key_init is from prev base init
+       - open channel port knock for request key_init
+       - base rf encryt to rk_key_init
+       - sat ook rf_key_init
+       - do secure xnode sat init.
+       - done
+
+  - mega-flash node-uuid api over net 
+  - isp_repair struck uuid offset uit build.
+
+ - example
+    15 sats
+    3 base
+      result
+        ~ 5 sat per base
+        on sat reboot init can switch base.
+
+ - xnode sat init
+    - any base will do.
+ 
+BUILD:
+ - make: add flags per file so suppress warnings about lib-ext.
+ - make: fix parent Makefile to support seperate clean and all targets.
+ - update hex2c to use sections_struct and rm casting
+
+ 
